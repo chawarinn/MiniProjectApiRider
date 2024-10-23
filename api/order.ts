@@ -427,7 +427,7 @@ router.put(
         }
       } else {
         res.status(400).json({ error: "No file uploaded." }); // Handle case where no file is uploaded
-        return; // Ensure we return after sending the response
+        return; 
       }
     }
   );
