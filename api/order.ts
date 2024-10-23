@@ -411,22 +411,19 @@ router.put(
             contentType: req.file.mimetype,
           };
   
-          // Upload file to Firebase Storage
           const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
           
-          // Get the download URL
           imageUrl = await getDownloadURL(snapshot.ref);
           
-          // Send success response with the image URL
           res.status(201).json({ message: "Image uploaded successfully", imageUrl });
-          return; // Ensure we return after sending the response
+          return; 
         } catch (error) {
           console.error("Error uploading to Firebase:", error);
           res.status(500).json({ error: "Error uploading image." });
-          return; // Ensure we return after sending the response
+          return; 
         }
       } else {
-        res.status(400).json({ error: "No file uploaded." }); // Handle case where no file is uploaded
+        res.status(400).json({ error: "No file uploaded." });
         return; 
       }
     }
